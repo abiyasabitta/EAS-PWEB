@@ -26,6 +26,23 @@ include("proses.php")
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" style="padding:10px; margin-left:10px;" href="#">SMA PWEB</a>
+        
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="jadwal.php">Jadwal</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="nilai.php">Nilai</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
     <div class="mx-auto">
         <!-- untuk mengeluarkan data -->
         <div class="card">
