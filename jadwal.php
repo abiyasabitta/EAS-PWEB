@@ -30,6 +30,7 @@
     </div>
     </nav>
 <div class="container">
+    <h1 style="text-align:center; margin-top:50px; margin-bottom:20px;">JADWAL MATA PELAJARAN</h1>  
                 <div class="timetable-img text-center">
                     <img src="img/content/timetable.png" alt="">
                 </div>
