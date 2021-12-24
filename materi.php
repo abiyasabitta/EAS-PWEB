@@ -2,13 +2,20 @@
 $server = "localhost";
 $user = "root";
 $password = "";
-$nama_database = "sistem-sma";
+$nama_database = "SMA-PWEB";
 
 $koneksi = mysqli_connect($server, $user, $password, $nama_database);
+$db = mysqli_connect($server, $user, $password, $nama_database);
 
 if( !$koneksi ){
     die("Gagal terhubung dengan database: " . mysqli_connect_error());
-} 
+}
+
+session_start();
+    if (!isset($_SESSION['id'])) {
+        $_SESSION['id'] = session_id();
+        $_SESSION['user_id'] = '05111940000044';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,32 +24,53 @@ if( !$koneksi ){
     <meta charset="utf-8">
     <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
     <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>time table - Bootdey.com</title>
+    <title>Materi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+	
 </head>
 <body style="background-color: rgb(226, 229, 231); margin:0px;">
     <nav class="navbar navbar-f navbar-expand-xl navbar-dark bg-dark">
-    <a class="navbar-brand" style="padding:10px;" href="#">SMA PWEB</a>
-    
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="jadwal.php">Jadwal</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="nilai.php">Nilai</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="materi.php">Materi</a>
-        </li>
-        </ul>
-    </div>
+    <div class="container-fluid">
+			<a class="navbar-brand fw-bold" href="#">SMA PWEB</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="jadwal.php">Jadwal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="materi.php">Materi</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " aria-current="page" href="#" id="tugasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tugas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="tugasDropdown">
+                            <?php
+                                $mhs_id = $_SESSION['user_id'];
+                                $sql = "SELECT k.kls_id, k.kls_nama FROM kelas_mahasiswa km JOIN kelas k ON (km.kls_id=k.kls_id) WHERE mhs_id='$mhs_id'";
+                                $query = mysqli_query($db, $sql);
+
+                                while ($kelas = mysqli_fetch_array($query)) {
+                                    echo "<li><a class='dropdown-item' href='tugas.php?id=". $kelas['kls_id'] . "'>" . $kelas['kls_nama'] . "</a></li>";
+                                }
+                            ?>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nilai.php">Nilai</a>
+                    </li>
+                </ul>
+            </div>
+		</div>
     </nav>
 <div class="container">
     <h1 style="text-align:center; margin-top:50px; margin-bottom:20px;">MATERI MATA PELAJARAN</h1>  

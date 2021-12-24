@@ -4,9 +4,9 @@ CREATE TABLE `materi` (
 );
 
 INSERT INTO `materi` (`mapel`, `book`) VALUES
-('Matematika', 'SKPL LH.pdf'),
-('Ilmu Pengetahuan Alam', 'SKPL LH.pdf'),
-('Pendidikan Agama', 'SKPL LH.pdf'),
-('Bahasa Indonesia', 'SKPL LH.pdf'),
-('Bahasa Inggris', 'SKPL LH.pdf'),
-('Pendeidikan Jasmani', 'SKPL LH.pdf')
+('Grafika Komputer (E)', 'SKPL LH.pdf'),
+('Kecerdasan Komputasional (A)', 'SKPL LH.pdf'),
+('Pemrograman Web (B)', 'SKPL LH.pdf'),
+('Jaringan Komputer (A)', 'SKPL LH.pdf'),
+('Manajemen Proyek Perangkat Lunak (B)', 'SKPL LH.pdf'),
+('Perancangan Perangkat Lunak (E)', 'SKPL LH.pdf')

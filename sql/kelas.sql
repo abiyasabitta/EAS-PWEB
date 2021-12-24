@@ -44,7 +44,8 @@ INSERT INTO `kelas` (`kls_id`, `kls_nama`, `kls_hari`, `kls_jamstart`, `kls_jame
 ('IF18450321A', 'Kecerdasan Komputasional (A)', 'Senin', '07:00:00', '09:50:00'),
 ('IF18450421B', 'Pemrograman Web (B)', 'Rabu', '10:00:00', '12:50:00'),
 ('IF18450521A', 'Jaringan Komputer (A)', 'Senin', '10:00:00', '12:50:00'),
-('IF18450621B', 'Manajemen Proyek Perangkat Lunak (B)', 'Selasa', '10:00:00', '12:50:00');
+('IF18450621B', 'Manajemen Proyek Perangkat Lunak (B)', 'Selasa', '10:00:00', '12:50:00'),
+('IF18242021B', 'Perancangan Perangkat Lunak (B)', 'Kamis', '10:00:00', '12:50:00');
 
 --
 -- Indexes for dumped tables

@@ -1,11 +1,11 @@
 <?php 
-    include("config.php");
-    
+    include("config.php"); 
+
     session_start();
     if (!isset($_SESSION['id'])) {
         $_SESSION['id'] = session_id();
         $_SESSION['user_id'] = '05111940000044';
-    } 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,11 +15,13 @@
     <!--  All snippets are MIT license http://bootdey.com/license -->
     <title>Jadwal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body style="background-color: rgb(226, 229, 231); margin:0px;">
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
@@ -37,7 +39,7 @@
                         <a class="nav-link" href="materi.php">Materi</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="tugasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle " aria-current="page" href="#" id="tugasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Tugas
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="tugasDropdown">
@@ -71,23 +73,21 @@
                                 <th class="text-uppercase">Hari</th>
                                 <th class="text-uppercase">Jam Mulai</th>
                                 <th class="text-uppercase">Jam Selesai</th>
-                                <th class="text-uppercase">Kelas</th>
-                                <th class="text-uppercase">Nama Dosen</th>
+                                <th class="text-uppercase">Mata Pelajaran</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php
-                        $sql = "Select * From jadwal WHERE id_siswa = 1 ORDER BY hari desc";
+                        $sql = "Select * From kelas ORDER BY kls_hari desc";
                         $query = mysqli_query($koneksi, $sql);
 
                         while ($jadwal = mysqli_fetch_array($query)) {
                             echo "<tr>";
 
-                            echo '<td class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">' . $jadwal['hari'] . "</td>";
-                            echo '<td class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">' . $jadwal['jam'] . "</td>";
-                            echo '<td class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">' . $jadwal['jam_selesai'] . "</td>";
-                            echo '<td class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">' . $jadwal['kelas'] . "</td>";
-                            echo '<td class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">' . $jadwal['dosen'] . "</td>";
+                            echo '<td class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">' . $jadwal['kls_hari'] . "</td>";
+                            echo '<td class="bg-lightred padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">' . $jadwal['kls_jamstart'] . "</td>";
+                            echo '<td class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">' . $jadwal['kls_jamend'] . "</td>";
+                            echo '<td class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">' . $jadwal['kls_nama'] . "</td>";
                             
 
                             echo "</tr>";
