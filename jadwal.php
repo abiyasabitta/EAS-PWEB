@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
     <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>time table - Bootdey.com</title>
+    <title>Jadwal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,9 +17,6 @@
     
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item">
             <a class="nav-link active" href="jadwal.php">Jadwal</a>
         </li>
@@ -47,7 +44,7 @@
                         </thead>
                         <tbody>
                         <?php
-                        $sql = "Select * From jadwal WHERE id_siswa = 1";
+                        $sql = "Select * From jadwal WHERE id_siswa = 1 ORDER BY hari desc";
                         $query = mysqli_query($koneksi, $sql);
 
                         while ($jadwal = mysqli_fetch_array($query)) {

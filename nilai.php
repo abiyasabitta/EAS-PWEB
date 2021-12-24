@@ -13,13 +13,11 @@ if( !$koneksi ){
 $nisn       = "";
 $nama       = "";
 $kelas     = "";
-$agama      = "";
-$ipa        = "";
-$ips        = "";
-$matematika = "";
-$bahasaIndonesia = "";
-$bahasaInggris = "";
-$penjas     = "";
+$pweb      = "";
+$grafkom        = "";
+$jarkom        = "";
+$kb = "";
+$ppl = "";
 $sukses     = "";
 $error      = "";
 
@@ -63,6 +61,20 @@ if (!isset($_SESSION['id']))
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" style="padding:10px; margin-left:10px;" href="#">SMA PWEB</a>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link " href="jadwal.php">Jadwal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="nilai.php">Nilai</a>
+                </li>
+                </ul>
+            </div>
+    </nav>
     <div class="mx-auto">
         <!-- untuk mengeluarkan data -->
         <div class="card">
@@ -84,14 +96,11 @@ if (!isset($_SESSION['id']))
                             $nisn        = $r2['nisn'];
                             $nama       = $r2['nama'];
                             $kelas     = $r2['kelas'];
-                            $agama   = $r2['agama'];
-                            $ipa   = $r2['ipa'];
-                            $ips   = $r2['ips'];
-                            $matematika   = $r2['matematika'];
-                            $bahasaIndonesia   = $r2['bahasaIndonesia'];
-                            $bahasaInggris   = $r2['bahasaInggris'];
-                            $penjas         = $r2['penjas'];
-
+                            $pweb   = $r2['pweb'];
+                            $grafkom   = $r2['grafkom'];
+                            $jarkom   = $r2['jarkom'];
+                            $kb   = $r2['kb'];
+                            $ppl   = $r2['ppl'];
                     ?>
                             <tr>
                                 <th>NISN</th>
@@ -106,33 +115,26 @@ if (!isset($_SESSION['id']))
                                 <td scope="col"><?php echo $kelas ?></td>
                             </tr>
                             <tr>
-                                <th>Pendidikan Agama</th>
-                                <td scope="col"><?php echo $agama ?></td>
+                                <th>Pemrograman Web</th>
+                                <td scope="col"><?php echo $pweb ?></td>
                             </tr>
                             <tr>
-                                <th>Ilmu Pengetahuan Alam</th>
-                                <td scope="col"><?php echo $ipa ?></td>
+                                <th>Grafika</th>
+                                <td scope="col"><?php echo $grafkom ?></td>
                             </tr>
                             <tr>
-                                <th>Ilmu Pengetahuan Islam</th>
-                                <td scope="col"><?php echo $ips ?></td>
+                                <th>Jaringan</th>
+                                <td scope="col"><?php echo $jarkom ?></td>
                             </tr>
                             <tr>
-                                <th>Matematika</th>
-                                <td scope="col"><?php echo $matematika ?></td>
+                                <th>Kecerdasan Buatan</th>
+                                <td scope="col"><?php echo $kb ?></td>
                             </tr>
                             <tr>
-                                <th>Bahasa Indonesia</th>
-                                <td scope="col"><?php echo $bahasaIndonesia ?></td>
+                                <th>Software</th>
+                                <td scope="col"><?php echo $ppl ?></td>
                             </tr>
                             <tr>
-                                <th>Bahasa Inggris</th>
-                                <td scope="col"><?php echo $bahasaInggris ?></td>
-                            </tr>
-                            <tr>
-                                <th>Pendidikan Jasmani</th>
-                                <td scope="col"><?php echo $penjas ?></td>
-                            </tr>
                         
                         <?php
                         }
