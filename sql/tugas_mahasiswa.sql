@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2021 at 10:15 AM
+-- Generation Time: Dec 24, 2021 at 11:19 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -43,7 +43,7 @@ CREATE TABLE `tugas_mahasiswa` (
 --
 
 INSERT INTO `tugas_mahasiswa` (`tgs_id`, `mhs_id`, `tm_nama_url`, `tm_url`, `tm_display_file`, `tm_file`, `tm_status`, `tm_nilai`) VALUES
-(1, '05111940000044', 'Link Dokumentasi', 'https://auliaaepa.blogspot.com/2021/09/tugas-1-pembuatan-static-website.html', NULL, NULL, 'menunggu dinilai', 90),
+(1, '05111940000044', 'Link Dokumentasi', 'https://auliaaepa.blogspot.com/2021/09/tugas-1-pembuatan-static-website.html', NULL, NULL, 'sudah dinilai', 90),
 (2, '05111940000044', NULL, NULL, NULL, NULL, 'belum dikumpulkan', NULL);
 
 --
