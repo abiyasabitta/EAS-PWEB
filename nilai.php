@@ -1,6 +1,12 @@
 <?php
 
 include("proses.php")
+/*session_start();
+if (!isset($_SESSION['id']))
+{
+    $_SESSION['id'] = session_id();
+    $_SESSION['nisn'] = '0005678117'
+}*/
 
 ?>
 
@@ -13,9 +19,12 @@ include("proses.php")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Nilai</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <style>
         .mx-auto {
-            width: 900px
+            width: 1000px
         }
 
         .card {
@@ -26,23 +35,6 @@ include("proses.php")
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" style="padding:10px; margin-left:10px;" href="#">SMA PWEB</a>
-        
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="jadwal.php">Jadwal</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="nilai.php">Nilai</a>
-            </li>
-            </ul>
-        </div>
-    </nav>
     <div class="mx-auto">
         <!-- untuk mengeluarkan data -->
         <div class="card">
@@ -51,26 +43,13 @@ include("proses.php")
                 <h1><b>Laporan Hasil Belajar<b></h1>
                 <center>
             </div>
+        </div>
+        <div class = "card">
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">NISN</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Kelas</th>
-                            <th scope="col">Pendidikan Agama</th>
-                            <th scope="col">IPA</th>
-                            <th scope="col">IPS</th>
-                            <th scope="col">Matematika</th>
-                            <th scope="col">Bahasa Indonesia</th>
-                            <th scope="col">Bahasa Inggris</th>
-                            <th scope="col">Penjaskes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $sql2   = "select * from nilai order by id desc";
+            <table class="table table-bordered">
+                <tbody>
+                    <?php
+                        $sql2   = "select * from nilai where (nisn='0005678117')";
                         $q2     = mysqli_query($koneksi, $sql2);
                         $urut   = 1;
                         while ($r2 = mysqli_fetch_array($q2)) {
@@ -85,26 +64,53 @@ include("proses.php")
                             $bahasaInggris   = $r2['bahasaInggris'];
                             $penjas         = $r2['penjas'];
 
-                        ?>
+                    ?>
                             <tr>
-                                <th scope="row"><?php echo $urut++ ?></th>
-                                <td scope="row"><?php echo $nisn ?></td>
-                                <td scope="row"><?php echo $nama ?></td>
-                                <td scope="row"><?php echo $kelas ?></td>
-                                <td scope="row"><?php echo $agama ?></td>
-                                <td scope="row"><?php echo $ipa ?></td>
-                                <td scope="row"><?php echo $ips ?></td>
-                                <td scope="row"><?php echo $matematika ?></td>
-                                <td scope="row"><?php echo $bahasaIndonesia ?></td>
-                                <td scope="row"><?php echo $bahasaInggris ?></td>
-                                <td scope="row"><?php echo $penjas ?></td>
+                                <th>NISN</th>
+                                <td scope="col"><?php echo $nisn ?></td>
                             </tr>
+                            <tr>
+                                <th>Nama</th>
+                                <td scope="col"><?php echo $nama ?></td>
+                            </tr>
+                            <tr>
+                                <th>Kelas</th>
+                                <td scope="col"><?php echo $kelas ?></td>
+                            </tr>
+                            <tr>
+                                <th>Pendidikan Agama</th>
+                                <td scope="col"><?php echo $agama ?></td>
+                            </tr>
+                            <tr>
+                                <th>Ilmu Pengetahuan Alam</th>
+                                <td scope="col"><?php echo $ipa ?></td>
+                            </tr>
+                            <tr>
+                                <th>Ilmu Pengetahuan Islam</th>
+                                <td scope="col"><?php echo $ips ?></td>
+                            </tr>
+                            <tr>
+                                <th>Matematika</th>
+                                <td scope="col"><?php echo $matematika ?></td>
+                            </tr>
+                            <tr>
+                                <th>Bahasa Indonesia</th>
+                                <td scope="col"><?php echo $bahasaIndonesia ?></td>
+                            </tr>
+                            <tr>
+                                <th>Bahasa Inggris</th>
+                                <td scope="col"><?php echo $bahasaInggris ?></td>
+                            </tr>
+                            <tr>
+                                <th>Pendidikan Jasmani</th>
+                                <td scope="col"><?php echo $penjas ?></td>
+                            </tr>
+                        
                         <?php
                         }
                         ?>
                     </tbody>
-                    
-                </table>
+            </table>
             </div>
         </div>
     </div>
