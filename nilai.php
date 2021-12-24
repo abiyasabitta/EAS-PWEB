@@ -34,6 +34,11 @@ if (!isset($_SESSION['id']))
     $_SESSION['nisn'] = '0005678117'
 }*/
 
+session_start();
+if (!isset($_SESSION['id'])) {
+    $_SESSION['id'] = session_id();
+    $_SESSION['user_id'] = '05111940000044';
+} 
 ?>
 
 <!DOCTYPE html>
@@ -44,10 +49,11 @@ if (!isset($_SESSION['id']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Nilai</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .mx-auto {
             width: 1000px
@@ -61,20 +67,43 @@ if (!isset($_SESSION['id']))
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" style="padding:10px; margin-left:10px;" href="#">SMA PWEB</a>
-
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand fw-bold" href="#">SMA PWEB</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link " href="jadwal.php">Jadwal</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="nilai.php">Nilai</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jadwal.php">Jadwal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="materi.php">Materi</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="tugasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tugas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="tugasDropdown">
+                            <?php
+                                $mhs_id = $_SESSION['user_id'];
+                                $sql = "SELECT k.kls_id, k.kls_nama FROM kelas_mahasiswa km JOIN kelas k ON (km.kls_id=k.kls_id) WHERE mhs_id='$mhs_id'";
+                                $query = mysqli_query($db, $sql);
+
+                                while ($kelas = mysqli_fetch_array($query)) {
+                                    echo "<li><a class='dropdown-item' href='tugas.php?id=". $kelas['kls_id'] . "'>" . $kelas['kls_nama'] . "</a></li>";
+                                }
+                            ?>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="nilai.php">Nilai</a>
+                    </li>
                 </ul>
             </div>
-    </nav>
+		</div>
+	</nav>
     <div class="mx-auto">
         <!-- untuk mengeluarkan data -->
         <div class="card">
