@@ -1,6 +1,34 @@
 <?php
+$server = "localhost";
+$user = "root";
+$password = "";
+$nama_database = "sistem-sma";
 
-include("proses.php")
+$koneksi = mysqli_connect($server, $user, $password, $nama_database);
+
+if( !$koneksi ){
+    die("Gagal terhubung dengan database: " . mysqli_connect_error());
+}
+
+$nisn       = "";
+$nama       = "";
+$kelas     = "";
+$agama      = "";
+$ipa        = "";
+$ips        = "";
+$matematika = "";
+$bahasaIndonesia = "";
+$bahasaInggris = "";
+$penjas     = "";
+$sukses     = "";
+$error      = "";
+
+if (isset($_GET['op'])) {
+    $op = $_GET['op'];
+} else {
+    $op = "";
+}
+//include("proses.php")
 /*session_start();
 if (!isset($_SESSION['id']))
 {
